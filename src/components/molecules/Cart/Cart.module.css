@@ -1,0 +1,17 @@
+.cart {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 7em;
+	height: 2.8em;
+	border: 1px solid aqua;
+	color: aqua;
+	cursor: pointer;
+}
+
+@media (min-width: 768px) {
+	.cart {
+		width: 10em;
+		font-size: 1.8rem;
+	}
+}

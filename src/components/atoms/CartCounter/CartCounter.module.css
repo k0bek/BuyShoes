@@ -1,0 +1,9 @@
+.counter {
+	width: 1.5em;
+	height: 1.5em;
+	line-height: 1.5em;
+	text-align: center;
+	border-radius: 50%;
+	background-color: aqua;
+	color: black;
+}

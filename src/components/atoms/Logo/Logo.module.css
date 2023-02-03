@@ -1,0 +1,20 @@
+.logo-box {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: 0.3s color;
+}
+
+.logo-box:hover {
+	color: rgb(197, 197, 197);
+}
+
+.company-name {
+	margin-left: 0.5em;
+}
+
+@media (min-width: 768px) {
+	.company-name {
+		font-size: 2.5rem;
+	}
+}
