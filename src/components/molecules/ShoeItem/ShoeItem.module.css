@@ -1,0 +1,52 @@
+.shoe-item {
+	display: flex;
+	flex-direction: column;
+	width: 20em;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+
+.shoe-item:hover {
+	border: 1px solid black;
+}
+
+.description {
+	display: flex;
+	gap: 0.2em;
+	flex-direction: column;
+	padding: 0.2em 0.6em;
+}
+
+.name {
+	margin-top: 0.2em;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.type,
+.pitch,
+.is-new {
+	font-size: 1.3rem;
+	color: gray;
+}
+
+.is-new-box {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.shoe-img {
+	position: relative;
+	background-image: url("./../../../assets/adidas-predator.jpg");
+	height: 22em;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
