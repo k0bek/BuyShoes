@@ -2,6 +2,8 @@ import ReactDOM from "react-dom";
 import React from "react";
 import styles from "./Modal.module.css";
 import CartItems from "../../organisms/CartItems/CartItems";
+import { useDispatch, useSelector } from "react-redux";
+
 function ModalBackdrop({ children }) {
 	return <div className={styles.backdrop}>{children}</div>;
 }

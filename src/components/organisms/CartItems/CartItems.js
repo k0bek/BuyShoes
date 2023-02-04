@@ -3,8 +3,12 @@ import styles from "./CartItems.module.css";
 
 import CartItem from "../../molecules/CartItem/CartItem";
 import AddedToCart from "../../atoms/AddedToCart/AddedToCart";
+import { handleCartShowActions } from "../../../store/handleCartShow";
+import { useDispatch, useSelector } from "react-redux";
 
 const CartItems = () => {
+	const dispatch = useDispatch();
+	const isCartShowed = useSelector((state) => state.isCartShowed);
 	return (
 		<Fragment>
 			<button className={styles.close}>
