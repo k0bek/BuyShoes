@@ -4,7 +4,7 @@ import styles from "./Cart.module.css";
 const Cart = () => {
 	return (
 		<div className={styles.cart}>
-			<span>My cart</span>
+			<span>Mój koszyk</span>
 			<CartCounter />
 		</div>
 	);

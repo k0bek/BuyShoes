@@ -1,0 +1,29 @@
+.item {
+	display: flex;
+	align-self: flex-start;
+}
+
+.desc {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2em;
+	padding: 0.5em;
+}
+
+.name {
+	font-size: 1.3rem;
+}
+
+.img {
+	width: 7em;
+	height: 7em;
+}
+
+.amount,
+.price {
+	font-size: 1.4rem;
+}
+
+.price {
+	font-weight: bold;
+}
