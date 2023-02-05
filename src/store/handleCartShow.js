@@ -1,16 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const handleCartShow = createSlice({
+	name: "handleCartShow",
 	initialState: {
 		isCartShowed: false,
 	},
 
-	closeCart(state) {
-		state.isCartShowed = true;
-	},
+	reducers: {
+		closeCart(state) {
+			state.isCartShowed = false;
+			console.log("kurwa");
+		},
 
-	showCart(state) {
-		state.isCartShowed = false;
+		showCart(state) {
+			state.isCartShowed = true;
+		},
 	},
 });
 

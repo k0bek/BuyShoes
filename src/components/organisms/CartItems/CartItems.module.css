@@ -31,3 +31,11 @@
 .close:hover {
 	transform: rotate(360deg);
 }
+
+.items {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+	max-height: 25em;
+	overflow-y: scroll;
+}

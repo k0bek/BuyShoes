@@ -7,23 +7,43 @@ import { handleCartShowActions } from "../../../store/handleCartShow";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartItems = () => {
+	const cartItems = useSelector((state) => state.cartPart.items);
+	const totalPrice = useSelector((state) => state.cartPart.totalPrice);
+	const totalQuantity = useSelector((state) => state.cartPart.totalQuantity);
+
 	const dispatch = useDispatch();
-	const isCartShowed = useSelector((state) => state.isCartShowed);
+
+	function closeCart() {
+		dispatch(handleCartShowActions.closeCart());
+	}
+
 	return (
 		<Fragment>
-			<button className={styles.close}>
+			<button className={styles.close} onClick={closeCart}>
 				<i className="fa-solid fa-xmark"></i>
 			</button>
 			<AddedToCart></AddedToCart>
-			<CartItem></CartItem>
+			<div className={styles.items}>
+				{cartItems.map((item) => {
+					return (
+						<CartItem
+							name={item.name}
+							price={item.price}
+							img={item.img}
+							id={item.id}
+							itemAmount={item.itemAmount}
+						/>
+					);
+				})}
+			</div>
 			<div className={styles.boxes}>
 				<div className={styles.box}>
 					<p>Twój koszyk:</p>
-					<p>3 produkty</p>
+					<p>{totalQuantity} produkty</p>
 				</div>
 				<div className={styles.box}>
 					<p>Cena produktów łącznie:</p>
-					<p>2291 zł</p>
+					<p>{totalPrice} zł</p>
 				</div>
 				<div className={styles.box}>
 					<p>Całkowity koszt dostawy:</p>
@@ -36,7 +56,7 @@ const CartItems = () => {
 					<b>Łącznie</b> (wraz z podatkiem):
 				</p>
 				<p>
-					<b>2291 zł</b>
+					<b>{totalPrice} zł</b>
 				</p>
 			</div>
 		</Fragment>

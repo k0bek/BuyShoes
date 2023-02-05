@@ -1,13 +1,24 @@
 import styles from "./ShoeItem.module.css";
 import Price from "../../atoms/Price/Price";
 import { useState } from "react";
-import adidasPredator from "./../../../assets/adidas-predator.jpg";
-import adidasPredatorNext from "./../../../assets/adidas-predator-next.jpg";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
+import { useDispatch } from "react-redux";
+import { handleCartPartActions } from "../../../store/cart-part";
 
-const ShoeItem = () => {
+const ShoeItem = ({
+	name,
+	price,
+	pitch,
+	type,
+	mainImg,
+	backImg,
+	isNew,
+	id,
+}) => {
 	const [hover, setHover] = useState(false);
 	const handleHover = () => setHover(!hover);
+
+	console.log(mainImg);
 
 	return (
 		<div
@@ -16,23 +27,29 @@ const ShoeItem = () => {
 			onMouseLeave={handleHover}
 		>
 			<div className={styles["shoe-img"]}>
-				<img src={!hover ? adidasPredator : adidasPredatorNext} />
-				<Price price={1189} hover={hover}></Price>
-				<AddToCartBtn type="button" />
+				<img src={!hover ? mainImg : backImg} />
+				<Price price={price} hover={hover}></Price>
+				<AddToCartBtn
+					type="button"
+					name={name}
+					price={price}
+					img={mainImg}
+					id={id}
+				/>
 			</div>
 			<ul className={styles.description}>
 				<li>
-					<h2 className={styles.name}>Buty Predator Accurady. 1 SG</h2>
+					<h2 className={styles.name}>{name}</h2>
 				</li>
 				<li>
-					<p className={styles.type}>Piłka Nożna</p>
+					<p className={styles.type}>{type}</p>
 				</li>
 				<div className={styles["is-new-box"]}>
 					<li>
-						<p className={styles.pitch}>Miękka murawa</p>
+						<p className={styles.pitch}>{pitch}</p>
 					</li>
 					<li>
-						<p className={styles["is-new"]}>nowość</p>
+						<p className={styles["is-new"]}>{isNew}</p>
 					</li>
 				</div>
 			</ul>
