@@ -17,9 +17,6 @@ const ShoeItem = ({
 }) => {
 	const [hover, setHover] = useState(false);
 	const handleHover = () => setHover(!hover);
-
-	console.log(mainImg);
-
 	return (
 		<div
 			className={styles["shoe-item"]}

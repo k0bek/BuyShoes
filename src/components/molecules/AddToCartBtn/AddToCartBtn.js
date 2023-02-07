@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux";
 import styles from "./AddToCartBtn.module.css";
 import { handleCartPartActions } from "../../../store/cart-part";
-
+import Button from "../../atoms/Button/Button";
 const AddToCartBtn = ({ type, name, price, img, id }) => {
 	const dispatch = useDispatch();
-	console.log(img);
 	function addItemToCart() {
 		dispatch(
 			handleCartPartActions.addItemToCart({
@@ -17,9 +16,11 @@ const AddToCartBtn = ({ type, name, price, img, id }) => {
 	}
 
 	return (
-		<button type={type} className={styles.btn} onClick={addItemToCart}>
-			<span>Dodaj do koszyka</span>
-		</button>
+		<Button
+			type={type}
+			addItemToCart={addItemToCart}
+			text={"Dodaj do koszyka"}
+		/>
 	);
 };
 

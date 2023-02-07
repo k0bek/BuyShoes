@@ -32,6 +32,7 @@ const CartItems = () => {
 							img={item.img}
 							id={item.id}
 							itemAmount={item.itemAmount}
+							totalPriceItem={item.totalPriceItem}
 						/>
 					);
 				})}

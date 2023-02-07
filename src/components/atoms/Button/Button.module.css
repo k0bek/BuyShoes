@@ -1,0 +1,26 @@
+.btn {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	color: white;
+	text-transform: uppercase;
+	padding: 0.15em 0.3em;
+	z-index: 1;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.btn:hover {
+	color: rgb(211, 211, 211);
+}
+
+.btn::before {
+	position: absolute;
+	inset: 0;
+	top: -0.3em;
+	left: -0.3em;
+	z-index: 0;
+	content: "";
+	border: 1px solid black;
+}

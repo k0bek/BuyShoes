@@ -9,7 +9,6 @@ const handleCartShow = createSlice({
 	reducers: {
 		closeCart(state) {
 			state.isCartShowed = false;
-			console.log("kurwa");
 		},
 
 		showCart(state) {
