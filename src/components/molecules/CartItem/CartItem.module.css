@@ -28,3 +28,19 @@
 .price {
 	font-weight: bold;
 }
+
+.delete-item-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.delete-item-btn:hover {
+	color: gray;
+}
+
+.top-box {
+	display: flex;
+	gap: 1em;
+}
