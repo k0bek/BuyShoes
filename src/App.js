@@ -7,11 +7,44 @@ import { useEffect, useState } from "react";
 import { handleCartPartActions } from "./store/cart-part";
 
 function App() {
+	const dispatch = useDispatch();
+	const [isInital, setIsInital] = useState(true);
 	const cart = useSelector((state) => state.cartPart);
 
 	useEffect(() => {
+		return async () => {
+			const fetchData = async () => {
+				const response = await fetch(
+					"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
+				);
+
+				const data = response.json();
+
+				return data;
+			};
+
+			try {
+				const data = await fetchData();
+				console.log(data);
+				dispatch(
+					handleCartPartActions.replaceItems({
+						items: data.items,
+						totalQuantity: data.totalQuantity,
+						totalPrice: data.totalPrice,
+					})
+				);
+			} catch {
+				throw new Error("Fetching data failed");
+			}
+		};
+	}, [dispatch]);
+
+	useEffect(() => {
 		const sendData = async () => {
-			console.log(cart.items);
+			if (isInital) {
+				setIsInital(false);
+				return;
+			}
 
 			const response = await fetch(
 				"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
@@ -33,7 +66,7 @@ function App() {
 		sendData().catch((error) => {
 			throw new Error("Sending data to server failed. Try again!");
 		});
-	}, [cart]);
+	}, [cart, isInital]);
 	return (
 		<div className="App">
 			<Modal></Modal>

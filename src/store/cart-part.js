@@ -10,7 +10,7 @@ const cartPart = createSlice({
 
 	reducers: {
 		replaceItems(state, action) {
-			state.items = action.payload.items;
+			state.items = action.payload.items || [];
 			state.totalPrice = action.payload.totalPrice;
 			state.totalQuantity = action.payload.totalQuantity;
 		},
