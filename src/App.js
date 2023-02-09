@@ -1,15 +1,16 @@
 import Header from "./components/organisms/Header/Header";
-import ShoeItem from "./components/molecules/ShoeItem/ShoeItem";
 import Items from "./components/organisms/Items/Items";
 import Modal from "./components/molecules/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { handleCartPartActions } from "./store/cart-part";
+import Loader from "./components/atoms/Loader/Loader";
 
 function App() {
 	const dispatch = useDispatch();
 	const [isInital, setIsInital] = useState(true);
 	const cart = useSelector((state) => state.cartPart);
+	const [loaderShowed, setLoaderShowed] = useState(true);
 
 	useEffect(() => {
 		return async () => {
@@ -25,7 +26,6 @@ function App() {
 
 			try {
 				const data = await fetchData();
-				console.log(data);
 				dispatch(
 					handleCartPartActions.replaceItems({
 						items: data.items,
@@ -36,6 +36,7 @@ function App() {
 			} catch {
 				throw new Error("Fetching data failed");
 			}
+			setLoaderShowed(false);
 		};
 	}, [dispatch]);
 
@@ -72,6 +73,7 @@ function App() {
 			<Modal></Modal>
 			<Header />
 			<Items />
+			{loaderShowed && <Loader></Loader>}
 		</div>
 	);
 }

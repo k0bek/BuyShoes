@@ -1,0 +1,27 @@
+.loader {
+	width: 4em;
+	height: 4em;
+	border-radius: 50%;
+	border: solid 0.3em rgb(30, 30, 255);
+	border-top: 0.3em solid rgb(255, 255, 255);
+	animation: loading 1s infinite linear;
+}
+
+.loader-background {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
