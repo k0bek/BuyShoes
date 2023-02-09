@@ -6,7 +6,6 @@ const CartCounter = () => {
 		(state) => state.cartPart.totalQuantity
 	);
 
-	console.log(cartTotalQuantity);
 	return <span className={styles.counter}>{cartTotalQuantity}</span>;
 };
 

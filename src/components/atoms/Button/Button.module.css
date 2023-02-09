@@ -24,3 +24,7 @@
 	content: "";
 	border: 1px solid black;
 }
+
+.btn:disabled {
+	background-color: aqua;
+}
