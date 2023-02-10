@@ -3,7 +3,7 @@ import styles from "./CartItems.module.css";
 
 import CartItem from "../../molecules/CartItem/CartItem";
 import CartInfo from "../../atoms/CartInfo/CartInfo";
-import { cartPartActions } from "../../../store/cart-part";
+import { uiPartActions } from "../../../store/ui-part";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartItems = () => {
@@ -14,7 +14,7 @@ const CartItems = () => {
 	const dispatch = useDispatch();
 
 	function closeCart() {
-		dispatch(cartPartActions.closeCart());
+		dispatch(uiPartActions.closeCart());
 	}
 
 	return (

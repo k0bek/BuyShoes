@@ -3,14 +3,14 @@ import React, { Fragment } from "react";
 import styles from "./Modal.module.css";
 import CartItems from "../../organisms/CartItems/CartItems";
 import { useDispatch, useSelector } from "react-redux";
-import { cartPartActions } from "../../../store/cart-part";
+import { uiPartActions } from "../../../store/ui-part";
 
 function ModalBackdrop({ children }) {
 	const isModalShowed = useSelector((state) => state.uiShowed.isCartShowed);
 	const dispatch = useDispatch();
 
 	function closeCartBackdrop() {
-		dispatch(cartPartActions.closeCart());
+		dispatch(uiPartActions.closeCart());
 	}
 
 	return (
