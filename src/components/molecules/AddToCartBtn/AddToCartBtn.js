@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
-import styles from "./AddToCartBtn.module.css";
-import { handleCartPartActions } from "../../../store/cart-part";
+import { cartPartActions } from "../../../store/cart-part";
 import Button from "../../atoms/Button/Button";
 const AddToCartBtn = ({ type, name, price, img, id }) => {
 	const dispatch = useDispatch();
 	function addItemToCart() {
 		dispatch(
-			handleCartPartActions.addItemToCart({
+			cartPartActions.addItemToCart({
 				name,
 				price,
 				img,

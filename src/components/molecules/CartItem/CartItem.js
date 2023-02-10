@@ -1,14 +1,14 @@
 import styles from "./CartItem.module.css";
 import Select from "../Select/Select";
 import { useDispatch } from "react-redux";
-import { handleCartPartActions } from "../../../store/cart-part";
+import { cartPartActions } from "../../../store/cart-part";
 
 const CartItem = ({ name, price, img, id, itemAmount, totalPriceItem }) => {
 	const dispatch = useDispatch();
 
 	function deleteItem() {
 		dispatch(
-			handleCartPartActions.deleteItem({
+			cartPartActions.deleteItem({
 				id: id,
 				totalPriceItem: totalPriceItem,
 				itemAmount: itemAmount,

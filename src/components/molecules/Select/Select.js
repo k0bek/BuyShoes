@@ -1,5 +1,5 @@
 import styles from "./Select.module.css";
-import { handleCartPartActions } from "../../../store/cart-part";
+import { cartPartActions } from "../../../store/cart-part";
 import { useDispatch } from "react-redux";
 
 const Select = ({ name, price, id, itemAmount, img }) => {
@@ -12,7 +12,7 @@ const Select = ({ name, price, id, itemAmount, img }) => {
 				className={styles.amount}
 				onChange={(event) => {
 					dispatch(
-						handleCartPartActions.addItemToCart({
+						cartPartActions.addItemToCart({
 							name: name,
 							price: price,
 							img: img,

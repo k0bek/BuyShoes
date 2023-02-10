@@ -1,13 +1,14 @@
 import CartCounter from "../../atoms/CartCounter/CartCounter";
 import styles from "./Cart.module.css";
-import handleCartShow from "../../../store/handleCartShow";
-import { handleCartShowActions } from "../../../store/handleCartShow";
-import { useDispatch, useSelector } from "react-redux";
+import { cartPartActions } from "../../../store/cart-part";
+import { uiPartActions } from "../../../store/ui-part";
+import { useDispatch } from "react-redux";
 const Cart = () => {
 	const dispatch = useDispatch();
 
 	function showCart() {
-		dispatch(handleCartShowActions.showCart());
+		document.querySelector("body").classList.add("modal-open");
+		dispatch(uiPartActions.showCart());
 	}
 
 	return (

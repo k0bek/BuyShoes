@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const handleCartShow = createSlice({
-	name: "handleCartShow",
+const uiPart = createSlice({
+	name: "uiPart",
 	initialState: {
 		isCartShowed: false,
+		isLoaderShowed: true,
 	},
 
 	reducers: {
@@ -14,8 +15,11 @@ const handleCartShow = createSlice({
 		showCart(state) {
 			state.isCartShowed = true;
 		},
+		closeLoader(state) {
+			state.isLoaderShowed = false;
+		},
 	},
 });
 
-export default handleCartShow;
-export const handleCartShowActions = handleCartShow.actions;
+export default uiPart;
+export const uiPartActions = uiPart.actions;

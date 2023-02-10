@@ -3,40 +3,41 @@ import Items from "./components/organisms/Items/Items";
 import Modal from "./components/molecules/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { handleCartPartActions } from "./store/cart-part";
 import Loader from "./components/atoms/Loader/Loader";
+import { uiPartActions } from "./store/ui-part";
+import { cartPartActions } from "./store/cart-part";
 
 function App() {
 	const dispatch = useDispatch();
 	const [isInital, setIsInital] = useState(true);
 	const cart = useSelector((state) => state.cartPart);
-	const [loaderShowed, setLoaderShowed] = useState(true);
+	const isLoaderShowed = useSelector((state) => state.uiShowed.isLoaderShowed);
 
 	useEffect(() => {
-		return async () => {
-			const fetchData = async () => {
-				const response = await fetch(
-					"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
-				);
+		document.querySelector("body").classList.add("modal-open");
 
-				const data = response.json();
+		const fetchData = async () => {
+			const response = await fetch(
+				"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
+			);
+			const jsonData = await response.json();
+			dispatch(
+				cartPartActions.replaceItems({
+					items: jsonData.items || [],
+					totalQuantity: jsonData.totalQuantity || 0,
+					totalPrice: jsonData.totalPrice || 0,
+				})
+			);
+			document.querySelector("body").classList.remove("modal-open");
+			dispatch(uiPartActions.closeLoader());
+		};
 
-				return data;
-			};
+		fetchData().catch((error) => {
+			console.error("Error while fetching data:", error);
+		});
 
-			try {
-				const data = await fetchData();
-				dispatch(
-					handleCartPartActions.replaceItems({
-						items: data.items,
-						totalQuantity: data.totalQuantity,
-						totalPrice: data.totalPrice,
-					})
-				);
-			} catch {
-				throw new Error("Fetching data failed");
-			}
-			setLoaderShowed(false);
+		return () => {
+			document.querySelector("body").classList.remove("modal-open");
 		};
 	}, [dispatch]);
 
@@ -47,35 +48,34 @@ function App() {
 				return;
 			}
 
-			const response = await fetch(
-				"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
-				{
-					method: "PUT",
-					body: JSON.stringify({
-						items: cart.items,
-						totalPrice: cart.totalPrice,
-						totalQuantity: cart.totalQuantity,
-					}),
-				}
-			);
-
-			const data = await response.json();
-
-			return data;
+			try {
+				const response = await fetch(
+					"https://title-bedb3-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
+					{
+						method: "PUT",
+						body: JSON.stringify({
+							items: cart.items,
+							totalPrice: cart.totalPrice,
+							totalQuantity: cart.totalQuantity,
+						}),
+					}
+				);
+				await response.json();
+			} catch (error) {
+				console.error("Error while sending data:", error);
+			}
 		};
 
-		sendData().catch((error) => {
-			throw new Error("Sending data to server failed. Try again!");
-		});
+		sendData();
 	}, [cart, isInital]);
+
 	return (
-		<div className="App">
-			<Modal></Modal>
+		<div className={`${"App"} ${"modal-open"}`}>
+			<Modal />
 			<Header />
 			<Items />
-			{loaderShowed && <Loader></Loader>}
+			{isLoaderShowed ? <Loader /> : null}
 		</div>
 	);
 }
-
 export default App;
