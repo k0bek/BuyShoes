@@ -18,7 +18,7 @@ const CartItem = ({ name, price, img, id, itemAmount, totalPriceItem }) => {
 	return (
 		<li className={styles.item}>
 			<div className={styles.img}>
-				<img src={img} className={styles.img}></img>
+				<img src={img} className={styles.img} alt={name}></img>
 			</div>
 			<div className={styles.desc}>
 				<div className={styles["top-box"]}>

@@ -10,6 +10,7 @@ function ModalBackdrop({ children }) {
 	const dispatch = useDispatch();
 
 	function closeCartBackdrop() {
+		document.querySelector("body").classList.remove("modal-open");
 		dispatch(uiPartActions.closeCart());
 	}
 

@@ -24,7 +24,7 @@ const ShoeItem = ({
 			onMouseLeave={handleHover}
 		>
 			<div className={styles["shoe-img"]}>
-				<img src={!hover ? mainImg : backImg} />
+				<img src={!hover ? mainImg : backImg} alt={name} />
 				<Price price={price} hover={hover}></Price>
 				<AddToCartBtn
 					type="button"

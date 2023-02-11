@@ -18,6 +18,7 @@ const Items = ({ children }) => {
 							mainImg={shoe.mainImg}
 							backImg={shoe.backImg}
 							id={shoe.id}
+							key={shoe.id}
 						/>
 					);
 				})}

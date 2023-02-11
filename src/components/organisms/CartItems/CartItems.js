@@ -14,6 +14,8 @@ const CartItems = () => {
 	const dispatch = useDispatch();
 
 	function closeCart() {
+		document.querySelector("body").classList.remove("modal-open");
+
 		dispatch(uiPartActions.closeCart());
 	}
 
@@ -37,6 +39,7 @@ const CartItems = () => {
 									id={item.id}
 									itemAmount={item.itemAmount}
 									totalPriceItem={item.totalPriceItem}
+									key={item.id}
 								/>
 							);
 						})}
